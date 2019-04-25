@@ -65,11 +65,11 @@ var findLengthOfLCIS = function(nums) {
             hi = lo
         }
     }
-    console.log(longest)
+    //console.log(longest)
     return longest.length || 1
 };
 // 计算一个 该数组的长度  并且打印最长的递增
-console.log(findLengthOfLCIS([2,4,1,3,6,7,8,5,9]))
+//console.log(findLengthOfLCIS([2,4,1,3,6,7,8,5,9]))
 
 // 计算某一个数字的频率
 // const countoccur = (arr, val)=> arr.reduce((a,v)=>(v===val?a+1:a+0),0)
@@ -81,6 +81,8 @@ console.log(findLengthOfLCIS([2,4,1,3,6,7,8,5,9]))
 // Array.prototype.double = function(){
 //     return this.Map((item) =>(item*2))
 // }
+
+
 
 const findpairs = function(arry){
     let l = arry.length;
@@ -351,7 +353,7 @@ const flatten = root =>{
 // 都是 45 
 
 
-test();
+//test();
 var n = 9;
 function test(){
   console.log(n)
@@ -488,9 +490,9 @@ var levelOrderBottom = function(root) {
 //终止函数为()
 const Sum = a => b => b ? Sum( a + b ) : a;
 
-console.log(Sum(1)(2)(3)())
-console.log(Sum(1)(2)(3)(4)())
-console.log(Sum(1)(2)(3)(4)(5)())
+//console.log(Sum(1)(2)(3)())
+//console.log(Sum(1)(2)(3)(4)())
+//console.log(Sum(1)(2)(3)(4)(5)())
 
 // 终止函数不为（）
 let total = 0;
@@ -502,7 +504,7 @@ if (n) {
 }
 
 add(1)(2)(3)(9);
-console.log(total);
+//console.log(total);
 
 
 //merge two BST
@@ -671,7 +673,7 @@ var changeWord = function(input){
 }
 
 let chout = changeWord("ccabc")
-console.log(chout)
+//console.log(chout)
 
 
 
@@ -732,7 +734,7 @@ const items = [
 ];
 const filtitem1 = items.filter(item=>item.cost<5)
 const filtitem2 = items.filter(item=>(item.cost<5&& item.type==='retail'))
-console.log(filtitem1)
+//console.log(filtitem1)
 
 
 
@@ -741,3 +743,108 @@ console.log(filtitem1)
 
 
 
+
+
+const callback = ()=>{
+    return "hello"
+}
+
+const b = callback =>{
+    console.log(callback());
+    return ()=>{};
+}
+var a = b(callback)
+
+a()
+a()
+a()
+
+
+const obj7 = {
+    a:1,b:2
+}
+const obj8 = {
+    b:13,c:3
+}
+const mergeObj = function(obj1, obj2){
+    let obj3 = Object.assign(obj1,obj2);
+    return obj3;
+}
+console.log(mergeObj(obj7, obj8));  
+
+
+
+// var callback = () => {
+//     return "Hello";
+//   }
+//   var b = callback => {
+//     var counter = 0;
+//     return function() {
+//       if (counter === 0) {
+//         console.log(callback());
+//       }
+//       counter += 1;
+//     }
+//   }
+  
+//   var a = b(callback);
+//   a();
+//   a();
+//   a();
+
+ const Person = function(name){
+      
+ }
+ 
+ 
+const dfs = function(ele){
+     let children = $(ele).children();
+     if(children.length === 0){
+         if(ele.tagName == 'OL' || ele.tagName == 'UL') return 1;
+         return 0;
+     }
+     let cur = 0;
+     for(let i=0;i<children.length;i++){
+         cur = Math.max(cur, dfs(children[i]));
+     }
+     if(ele.tagName == 'OL' || ele.tagName =='UL') return cur+1;
+     return cur;
+} 
+$(document).ready(function(){
+    console.log(dfs(":root"))
+})
+
+
+
+var search = function(nums, target) {
+    if (nums.length === 0) return -1; // check empty
+  
+    let left = 0;
+    let right = nums.length - 1;
+  
+    while (left <= right) {
+      const mid = left + Math.floor((right - left) / 2);
+  
+      if (nums[mid] === target) return mid;
+  
+      // left sorted
+      if (nums[left] <= nums[mid]) {
+        // check if is in the left sorted part
+        if (nums[left] <= target && target < nums[mid]) {
+          right = mid - 1;
+        } else {
+          left = mid + 1;
+        }
+      // right sorted
+      } else {
+        // check if is in the right sorted part
+        if (nums[mid] < target && target <= nums[right]) {
+          left = mid + 1;
+        } else {
+          right = mid - 1;
+        }
+      }
+    }
+  
+    return -1;
+  };
